@@ -2,8 +2,8 @@ package models
 
 import (
 	"database/sql/driver"
+	"encoding/json"
 	"github.com/jinzhu/gorm"
-	"gopkg.in/gin-gonic/gin.v1/json"
 	"time"
 )
 
@@ -32,4 +32,19 @@ func (ed *EntryDate) Scan(value interface{}) error {
 
 func (ed *EntryDate) MarshalJSON() ([]byte, error) {
 	return json.Marshal(ed.Format("2006-01-02"))
+}
+
+func (ed *EntryDate) UnmarshalJSON(b []byte) error {
+	var dateString string
+	if err := json.Unmarshal(b, &dateString); err != nil {
+		return err
+	}
+
+	if t, err := time.Parse("2006-01-02", dateString); err != nil {
+		return err
+	} else {
+		*ed = EntryDate{t}
+		return nil
+	}
+
 }

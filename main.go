@@ -8,6 +8,7 @@ import (
 
 func main() {
 	err := services.InitializeDB()
+	defer services.GetDB().Close()
 	if err != nil {
 		panic(err)
 	}

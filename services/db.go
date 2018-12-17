@@ -1,6 +1,7 @@
 package services
 
 import (
+	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 	_ "github.com/jinzhu/gorm/dialects/sqlite"
@@ -19,7 +20,11 @@ var (
 // dbs based on config paramaters
 // returns a configured gorm.DB object
 func InitializeDB() error {
-	db, err = gorm.Open("mysql", "root:wordpass15@tcp(localhost:3306)/timeslice?parseTime=True&charset=utf8&loc=Local")
+	if gin.Mode() == gin.DebugMode || gin.Mode() == gin.ReleaseMode{
+		db, err = gorm.Open("mysql", "root:wordpass15@tcp(localhost:3306)/timeslice?parseTime=True&charset=utf8&loc=Local")
+	}else{
+		db, err = gorm.Open("sqlite3", "../timeslice_test.db")
+	}
 
 	if err != nil {
 		return err

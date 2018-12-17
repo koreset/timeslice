@@ -9,7 +9,7 @@ func initializeRoutes(r *gin.Engine) {
 	empC := controllers.EmployeeController{}
 	tsC := controllers.TimesheetController{}
 
-	r.POST("/employee/new", empC.Create)
-	r.GET("/employee/:empID/timesheet", tsC.GetTimesheetsForEmployee)
-	r.POST("/employee/:empID/timesheet", tsC.CreateTimesheetEntryForEmployee)
+	r.POST("/employee", empC.Create)
+	r.GET("/employee/:id/timesheet", tsC.GetTimesheetsForEmployee)
+	r.POST("/employee/:id/timesheet", tsC.CreateTimesheetEntryForEmployee)
 }

@@ -21,7 +21,7 @@ func TestTimesheetController_GetTimesheetsForEmployee(t *testing.T) {
 	payload["end_date"] = "2018-12-17"
 
 	r := gin.Default()
-	r.GET("/employee/:empID/timesheet", testsc.GetTimesheetsForEmployee)
+	r.GET("/employee/timesheet", testsc.GetTimesheetsForEmployee)
 
 	jsonPayoad, _ := json.Marshal(payload)
 	w := httptest.NewRecorder()
@@ -41,7 +41,7 @@ func TestTimesheetController_GetTimesheetsForEmployee(t *testing.T) {
 func TestTimesheetController_CreateTimesheetEntryForEmployee(t *testing.T) {
 	gin.SetMode(gin.TestMode)
 	r := gin.Default()
-	r.POST("/employee/:empID/timesheet", testsc.CreateTimesheetEntryForEmployee)
+	r.POST("/employee/:eId/timesheet", testsc.CreateTimesheetEntryForEmployee)
 	payload := make(map[string]interface{})
 
 	payload["employee_id"] = 1
@@ -60,5 +60,5 @@ func TestTimesheetController_CreateTimesheetEntryForEmployee(t *testing.T) {
 	assert.Equal(t, http.StatusCreated, w.Code)
 	content, _ := ioutil.ReadAll(w.Body)
 
-	assert.Contains(t, content, `"Another work done on understanding golang even better"`)
+	assert.Contains(t, content, "Another work done on understanding golang even better")
 }
