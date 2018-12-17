@@ -70,7 +70,7 @@ func populateData(db *gorm.DB) {
 
 	var ts2 = models.TimesheetEntry{
 		Description: "Timesheet Entry Two",
-		EntryDate:   time.Now().Add(-time.Hour * 24 * 7),
+		EntryDate:   models.EntryDate{time.Now().Add(-time.Hour * 24 * 7)},
 		EmployeeID:  emp1.ID,
 		ClientID:    client1.ID,
 		ProjectID:   project1.ID,
@@ -79,7 +79,7 @@ func populateData(db *gorm.DB) {
 
 	var ts3 = models.TimesheetEntry{
 		Description: "Timesheet Entry Three",
-		EntryDate:   time.Now(),
+		EntryDate:   models.EntryDate{time.Now()},
 		EmployeeID:  emp1.ID,
 		ClientID:    client1.ID,
 		ProjectID:   project1.ID,
@@ -88,7 +88,7 @@ func populateData(db *gorm.DB) {
 
 	var ts4 = models.TimesheetEntry{
 		Description: "Timesheet Entry Three",
-		EntryDate:   time.Now(),
+		EntryDate:   models.EntryDate{time.Now()},
 		EmployeeID:  emp1.ID,
 		ClientID:    client1.ID,
 		ProjectID:   project2.ID,
@@ -97,7 +97,7 @@ func populateData(db *gorm.DB) {
 
 	var ts1 = models.TimesheetEntry{
 		Description: "Timesheet Entry One",
-		EntryDate:   time.Now().Add(-time.Hour * 24 * 15),
+		EntryDate:   models.EntryDate{time.Now().Add(-time.Hour * 24 * 15)},
 		EmployeeID:  emp1.ID,
 		ClientID:    client1.ID,
 		ProjectID:   project1.ID,
