@@ -30,3 +30,7 @@ func (ts *TimesheetController) GetTimesheetsForEmployee(c *gin.Context) {
 
 	c.JSON(http.StatusOK, entries)
 }
+
+func (ts *TimesheetController) CreateTimesheetEntryForEmployee(c *gin.Context) {
+	c.JSON(http.StatusInternalServerError, gin.H{"error": "Not Implemented"})
+}
