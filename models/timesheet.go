@@ -13,7 +13,7 @@ type TimesheetEntry struct {
 	EmployeeID  uint      `gorm:"not null" json:"employee_id"`
 	ProjectID   uint      `gorm:"not null" json:"project_id"`
 	Duration    float64   `json:"duration"`
-	EntryDate   EntryDate `gorm:"column:entry_date;type:date" json:"entry_date" time:"2016-01-02"`
+	EntryDate   EntryDate `gorm:"type:date" json:"entry_date" time:"2016-01-02"`
 	Description string    `json:"description"`
 }
 
@@ -46,5 +46,4 @@ func (ed *EntryDate) UnmarshalJSON(b []byte) error {
 		*ed = EntryDate{t}
 		return nil
 	}
-
 }

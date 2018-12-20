@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/koreset/timeslice/models"
 	"github.com/koreset/timeslice/services"
@@ -45,7 +46,9 @@ func (ts *TimesheetController) CreateTimesheetEntryForEmployee(c *gin.Context) {
 	var timesheetEntry models.TimesheetEntry
 	err := c.ShouldBindJSON(&timesheetEntry)
 	if err != nil{
+		fmt.Println("Error: ", err)
 		c.JSON(http.StatusBadRequest, gin.H{"error":err})
+		return
 	}
 	err = tsc.CreateEntry(&timesheetEntry)
 	if err != nil{

@@ -21,7 +21,7 @@ func TestTimesheetController_GetTimesheetsForEmployee(t *testing.T) {
 	payload["end_date"] = "2018-12-17"
 
 	r := gin.Default()
-	r.GET("/employee/timesheet", testsc.GetTimesheetsForEmployee)
+	r.GET("/employee/:id/timesheet", testsc.GetTimesheetsForEmployee)
 
 	jsonPayoad, _ := json.Marshal(payload)
 	w := httptest.NewRecorder()
